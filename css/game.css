@@ -2,7 +2,6 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-
     padding:1em;
     
     #infos {
@@ -24,11 +23,15 @@
     #grille {
         display: flex;
         flex-flow: column nowrap;
+        margin:0%;
+
+        background-color: aliceblue;
+        border-radius: 5px;
+        padding:0.3em;
 
         .grid-row {
             display: flex;
             flex-flow: row nowrap;
-
             div {
                 display: flex;
                 height: 30px;
@@ -36,7 +39,8 @@
                 aspect-ratio: 1;
                 border: solid 2px;
                 border-radius: 2px;
-                
+                opacity: 
+                0.8;
             }
 
             .grid-cell-1 {
@@ -60,8 +64,8 @@
             }
 
             .grid-cell-5 {
-                background-color: white;
-                border-color: pink;
+                background-color: pink;
+                border-color: violet;
             }
         }
     }
