@@ -1,3 +1,4 @@
+
 window.onload = init;
 
 
@@ -61,4 +62,8 @@ function randomizeGrid(grid){
 
 function getDomCellForCoordinates(x,y){
 //todo
+}
+
+function checkForWin(grid){
+//todo 
 }
