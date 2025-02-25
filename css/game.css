@@ -42,7 +42,7 @@
             border: solid 2px;
             border-radius: 2px;
             opacity: 1;
-            transition: 0.2s;
+            transition: 0.1s;
         }
         div:hover{
             opacity: 0.5;

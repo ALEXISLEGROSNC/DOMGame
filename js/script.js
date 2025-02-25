@@ -7,7 +7,7 @@ function init() {
   var grid = document.getElementById("grille");
   generateGrid(grid);
   refreshPositions(grid);
-  randomizeGrid(grid);
+  // randomizeGrid(grid);
   refreshPositions(grid);
 }
 
@@ -139,7 +139,7 @@ function refreshPositions(grid){
   });
 }
 
-function randomizeGrid(grid) {
+window.randomize = async function(grid) {
   var elements = Array.from(grid.getElementsByTagName('div'));
   var moves = [moveLeft, moveRight, moveUp, moveDown];
   var numMoves = 100; // A changer pour augmenter ou diminuer la difficulté
@@ -148,9 +148,9 @@ function randomizeGrid(grid) {
     var randomElement = elements[Math.floor(Math.random() * elements.length)];
     var randomMove = moves[Math.floor(Math.random() * moves.length)];
     randomMove(randomElement);
+    refreshPositions(grid);
+    await wait(50); // Attendre 0,5s
   }
-
-  refreshPositions(grid);
 }
 
 function DomFromCell(x, y) {
@@ -176,7 +176,7 @@ function CellFromDom(domCell) {
 
 window.checkForWin = function(grid) {
   var grid = document.getElementById("grille");
-  var colors = getGridColors(grid);
+  var couleurs = getGridColors(grid);
 
   // check colonnes
   for (var x = 0; x < 5; x++) {
@@ -223,4 +223,9 @@ function getGridColors(grid) {
   });
 
   return colors;
+}
+
+
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
