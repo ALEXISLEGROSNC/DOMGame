@@ -33,13 +33,31 @@ function generateGrid(grid) {
   attachOnclickEvents(grid);
 }
 
+var mouseClickX, mouseClickY;
+var isMouseDown = false;
+
 function attachOnclickEvents(grid) {
   var elements = grid.getElementsByTagName('div');
   Array.from(elements).forEach(element => {
-    element.onclick = function() {
-      var cell = CellFromDom(element);
-      moveLeft(element);
-    };
+    isMouseDown = true;
+    element.onmousedown = function(event) {
+      console.log("...")
+      mouseClickX = event.clientX;
+      mouseClickY = event.clientY;
+    }
+    element.onmouseout = function(event) {
+      if(isMouseDown){
+        isMouseDown = false;
+        var deltaX = event.clientX - mouseClickX;
+        var deltaY = event.clientY - mouseClickY;
+        
+        mouseClickX = 0;
+        mouseClickY = 0;
+  
+        console.log("\n\ndeltaX : " + deltaX + "\ndeltaY : " + deltaY);
+      }
+      
+    }
   });
 }
 
@@ -91,7 +109,7 @@ function DomFromCell(x, y) {
       return element;
     }
   }
-  return null; // Si aucun élément n'est trouvé
+  return null;
 }
 
 function CellFromDom(domCell) {
