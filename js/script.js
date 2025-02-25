@@ -163,6 +163,53 @@ function CellFromDom(domCell) {
 
 
 
-window.checkForWin = function(grid){
-//todo 
+window.checkForWin = function(grid) {
+  var grid = document.getElementById("grille");
+  var colors = getGridColors(grid);
+
+  // check colonnes
+  for (var x = 0; x < 5; x++) {
+    var couleur = couleurs[0][x];
+    var win = true;
+    for (var y = 0; y < 5; y++) {
+      if (couleurs[y][x] !== couleur) {
+        win = false;
+        break;
+      }
+    }
+    if (win) {
+      return true;
+    }
+  }
+
+  // check lignes
+  for (var y = 0; y < 5; y++) {
+    var couleur = couleurs[y][0];
+    var win = true;
+    for (var x = 0; x < 5; x++) {
+      if (couleurs[y][x] !== couleur) {
+        win = false;
+        break;
+      }
+    }
+    if (win) {
+      return true;
+    }
+  }
+  // sinon , false
+  return false;
+}
+
+function getGridColors(grid) {
+  var domCells = grid.getElementsByTagName('div');
+  var colors = Array(5).fill(null).map(() => Array(5).fill(null));
+
+  Array.from(domCells).forEach(cell => {
+    var x = parseInt(cell.dataset.x);
+    var y = parseInt(cell.dataset.y);
+    var colorClass = Array.from(cell.classList).find(cls => /^c\d+$/.test(cls));
+    colors[y][x] = colorClass;
+  });
+
+  return colors;
 }
