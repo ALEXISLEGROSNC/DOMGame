@@ -62,15 +62,48 @@ function attachOnclickEvents(grid) {
 }
 
 function moveUp(domCell) {
-//todo
+  var grid = document.getElementById("grille");
+  var domCells = grid.getElementsByTagName('div');
+
+  var columnCells = Array.from(domCells).filter(element => parseInt(element.dataset.x) === parseInt(domCell.dataset.x));
+
+  columnCells.forEach(cell => {
+    var y = parseInt(cell.dataset.y);
+    cell.dataset.y = (y + 4) % 5;
+  });
+
+  refreshPositions(grid);
 }
 
 function moveDown(domCell) {
-//todo
+  var grid = document.getElementById("grille");
+  var domCells = grid.getElementsByTagName('div');
+
+  var columnCells = Array.from(domCells).filter(element => parseInt(element.dataset.x) === parseInt(domCell.dataset.x));
+
+  columnCells.forEach(cell => {
+    var y = parseInt(cell.dataset.y);
+    cell.dataset.y = (y + 1) % 5;
+  });
+
+  refreshPositions(grid);
 }
 
 function moveLeft(domCell) {
-  
+  var grid = document.getElementById("grille");
+  var domCells = grid.getElementsByTagName('div');
+
+  var rowCells = Array.from(domCells).filter(element => parseInt(element.dataset.y) === parseInt(domCell.dataset.y));
+
+  rowCells.forEach(cell => {
+    var x = parseInt(cell.dataset.x);
+    cell.dataset.x = (x + 4) % 5;
+  });
+
+  refreshPositions(grid);  
+}
+
+function moveRight(domCell) {
   var grid = document.getElementById("grille");
   var domCells = grid.getElementsByTagName('div');
   
@@ -82,10 +115,6 @@ function moveLeft(domCell) {
   });
 
   refreshPositions(grid);
-}
-
-function moveRight(domCell) {
-//todo
 }
 
 
