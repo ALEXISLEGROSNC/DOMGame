@@ -39,25 +39,38 @@ var isMouseDown = false;
 function attachOnclickEvents(grid) {
   var elements = grid.getElementsByTagName('div');
   Array.from(elements).forEach(element => {
-    isMouseDown = true;
+    let startX, startY;
+
     element.onmousedown = function(event) {
-      console.log("...")
-      mouseClickX = event.clientX;
-      mouseClickY = event.clientY;
-    }
-    element.onmouseout = function(event) {
-      if(isMouseDown){
-        isMouseDown = false;
-        var deltaX = event.clientX - mouseClickX;
-        var deltaY = event.clientY - mouseClickY;
-        
-        mouseClickX = 0;
-        mouseClickY = 0;
-  
-        console.log("\n\ndeltaX : " + deltaX + "\ndeltaY : " + deltaY);
-      }
-      
-    }
+      startX = event.clientX;
+      startY = event.clientY;
+
+      document.onmousemove = function(event) {
+        let diffX = event.clientX - startX;
+        let diffY = event.clientY - startY;
+
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+          if (diffX > 0) {
+            moveRight(element);
+          } else {
+            moveLeft(element);
+          }
+        } else {
+          if (diffY > 0) {
+            moveDown(element);
+          } else {
+            moveUp(element);
+          }
+        }
+
+        document.onmousemove = null;
+      };
+
+      document.onmouseup = function() {
+        document.onmousemove = null;
+        document.onmouseup = null;
+      };
+    };
   });
 }
 
