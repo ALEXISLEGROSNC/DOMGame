@@ -6,6 +6,7 @@ function init() {
   console.log("Page et ressources prêtes à l'emploi");
   var grid = document.getElementById("grille");
   generateGrid(grid);
+  refreshPositions(grid);
   randomizeGrid(grid);
   refreshPositions(grid);
 }
@@ -135,8 +136,18 @@ function refreshPositions(grid){
   });
 }
 
-function randomizeGrid(grid){
-//todo
+function randomizeGrid(grid) {
+  var elements = Array.from(grid.getElementsByTagName('div'));
+  var moves = [moveLeft, moveRight, moveUp, moveDown];
+  var numMoves = 100; // A changer pour augmenter ou diminuer la difficulté
+
+  for (var i = 0; i < numMoves; i++) {
+    var randomElement = elements[Math.floor(Math.random() * elements.length)];
+    var randomMove = moves[Math.floor(Math.random() * moves.length)];
+    randomMove(randomElement);
+  }
+
+  refreshPositions(grid);
 }
 
 function DomFromCell(x, y) {
