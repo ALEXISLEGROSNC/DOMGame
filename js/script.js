@@ -36,12 +36,37 @@ function generateGrid(grid) {
 function attachOnclickEvents(grid) {
   var elements = grid.getElementsByTagName('div');
   Array.from(elements).forEach(element => {
-    element.onclick = function() {
-      var cell = CellFromDom(element);
-      //moveRight(element);
-      //moveLeft(element);
-      //moveUp(element);
-      moveDown(element);
+    let startX, startY;
+
+    element.onmousedown = function(event) {
+      startX = event.clientX;
+      startY = event.clientY;
+
+      document.onmousemove = function(event) {
+        let diffX = event.clientX - startX;
+        let diffY = event.clientY - startY;
+
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+          if (diffX > 0) {
+            moveRight(element);
+          } else {
+            moveLeft(element);
+          }
+        } else {
+          if (diffY > 0) {
+            moveDown(element);
+          } else {
+            moveUp(element);
+          }
+        }
+
+        document.onmousemove = null;
+      };
+
+      document.onmouseup = function() {
+        document.onmousemove = null;
+        document.onmouseup = null;
+      };
     };
   });
 }
