@@ -1,16 +1,14 @@
 
-window.onload = init;
+const movementTime = 200; // 0.2s
+const defaultRandomizeMovementsCount = 3;
 
-
-function init() {
+window.init = function () {
   console.log("Page et ressources prêtes à l'emploi");
   var grid = document.getElementById("grille");
   generateGrid(grid);
-  refreshPositions(grid);
-  // randomizeGrid(grid);
-  refreshPositions(grid);
 }
 
+window.onload = window.init();
 
 function generateGrid(grid) {
   grid.innerHTML = '';
@@ -21,7 +19,7 @@ function generateGrid(grid) {
     cell.setAttribute('data-x', currentX);
     cell.setAttribute('data-y', currentY);
     cell.classList.add('c' + (currentX + 1));
-
+    cell.style.transition = "transform " + movementTime + "ms";
 
     grid.appendChild(cell);
     currentX++;
@@ -32,12 +30,14 @@ function generateGrid(grid) {
   }
 
   attachOnclickEvents(grid);
+  refreshPositions(grid);
 }
 
 var mouseClickX, mouseClickY;
 var isMouseDown = false;
 
-function attachOnclickEvents(grid) {
+function attachOnclickEvents() {
+  var grid = document.getElementById('grille');
   var elements = grid.getElementsByTagName('div');
   Array.from(elements).forEach(element => {
     let startX, startY;
@@ -47,6 +47,7 @@ function attachOnclickEvents(grid) {
       startY = event.clientY;
 
       document.onmousemove = function(event) {
+        let isAlreadyInAWinningState = window.checkForWin(grid);
         let diffX = event.clientX - startX;
         let diffY = event.clientY - startY;
 
@@ -65,6 +66,11 @@ function attachOnclickEvents(grid) {
         }
 
         document.onmousemove = null;
+        if(window.checkForWin(grid) && !isAlreadyInAWinningState){
+          wait(movementTime).then(() => {
+            alert("Bravo, vous avez gagné !");
+          });
+        }
       };
 
       document.onmouseup = function() {
@@ -139,10 +145,10 @@ function refreshPositions(grid){
   });
 }
 
-window.randomize = async function(grid) {
+window.randomize = async function(grid, numMoves) {
   var elements = Array.from(grid.getElementsByTagName('div'));
   var moves = [moveLeft, moveRight, moveUp, moveDown];
-  var numMoves = 100; // A changer pour augmenter ou diminuer la difficulté
+  var numMoves = numMoves?numMoves:defaultRandomizeMovementsCount; // A changer pour augmenter ou diminuer la difficulté
 
   for (var i = 0; i < numMoves; i++) {
     var randomElement = elements[Math.floor(Math.random() * elements.length)];
@@ -174,7 +180,7 @@ function CellFromDom(domCell) {
 
 
 
-window.checkForWin = function(grid) {
+window.checkForWin = function() {
   var grid = document.getElementById("grille");
   var couleurs = getGridColors(grid);
 
@@ -211,7 +217,8 @@ window.checkForWin = function(grid) {
   return false;
 }
 
-function getGridColors(grid) {
+function getGridColors() {
+  var grid = document.getElementById("grille");
   var domCells = grid.getElementsByTagName('div');
   var colors = Array(5).fill(null).map(() => Array(5).fill(null));
 
@@ -224,7 +231,7 @@ function getGridColors(grid) {
 
   return colors;
 }
-
+window.getGridColors = getGridColors();
 
 function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
