@@ -67,9 +67,9 @@ function attachOnclickEvents() {
 
         document.onmousemove = null;
         if(window.checkForWin(grid) && !isAlreadyInAWinningState){
-          wait(movementTime).then(() => {
-            alert("Bravo, vous avez gagné !");
-          });
+          // wait(movementTime).then(() => {
+          //   alert("Bravo, vous avez gagné !");
+          // });
         }
       };
 
@@ -145,7 +145,8 @@ function refreshPositions(grid){
   });
 }
 
-window.randomize = async function(grid, numMoves) {
+window.randomize = async function(numMoves) {
+  var grid = document.getElementById("grille");
   var elements = Array.from(grid.getElementsByTagName('div'));
   var moves = [moveLeft, moveRight, moveUp, moveDown];
   var numMoves = numMoves?numMoves:defaultRandomizeMovementsCount; // A changer pour augmenter ou diminuer la difficulté
