@@ -1,31 +1,10 @@
-# 🍵 Travaux pratiques de développement Web - DOMGame
+🔴🟩🟨🟨🟦
+🩷🟩🟨🟦🩷
+🩷🔴🔴🟦🩷
+🔴🟩🟩🟨🩷
+🟨🟦🟩🟦🔴
 
-## 👨‍💻 Contributeur/ice(s)
-<table>
-<thead>
-<tr>
-<th>Nom</th>
-<th>Rôle(s)</th>
-<th>Contact</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Alexis Legros</td>
-<td>
-<ul><li>Dev</li></ul>
-</td>
-<td>alexislegrosnc@gmail.com</td>
-</tr>
-<tr>
-<td>Beatriz Moura</td>
-<td>
-<ul><li>Dev</li></ul>
-</td>
-<td>Github:@BeaMoura0906</td>
-</tr>
-</tbody>
-</table>
+# 🧊 DOMGame | Rubik’s Square
 
  ## 📒 Description
  >>[à compléter]
@@ -43,3 +22,31 @@ title="CSS3"/>
 <img style="height:50px;" src="https://i.pinimg.com/736x/13/40/7c/13407c12f50f08d328800c3caef43f61.jpg" 
 alt="Javascript"
 title="Javascript"/>
+
+## 👨‍💻 Contributeurs
+
+Ce projet a été réalisé dans le cadre de l'UE Conception, Programmation et Développement - Application Web (SLUG602-1).
+
+Licence 3 MIAGE | Université Côte d'Azur 2024/2025
+
+<table>
+<thead>
+<tr>
+<th>Nom</th>
+<th>Github</th>
+<th>Contact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alexis LEGROS</td>
+<td>@ALEXISLEGROSNC</td>
+<td>alexis.legros@etu.unice.fr</td>
+</tr>
+<tr>
+<td>Beatriz MOURA</td>
+<td>@BeaMoura0906</td>
+<td>beatriz.moura@etu.unice.fr</td>
+</tr>
+</tbody>
+</table>
