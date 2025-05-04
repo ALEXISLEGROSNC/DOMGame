@@ -7,18 +7,64 @@
     #infos {
         display: flex;
         flex-flow: row nowrap;
-        padding:0.5em;
-        margin: 0.5em 0% 0.5em 0%;
+        padding: 0.5em;
+        margin: 1.5em 0% 0.5em 0%;
         align-items: center;
+        justify-content: space-between;
 
         background-color: black;
         border-color: grey;
-        border : solid 2px ;
-        border-radius : 3px;
+        border: solid 2px;
+        border-radius: 5px;
 
         button {
             padding: 0.5em 1em;
             margin: 0em 0.5em;
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: white;
+            color: black;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background-color: black;
+            color: white;
+            transform: scale(0.95);
+        }
+
+        .exit-button {
+            background-color: transparent;
+            color: red;
+            border: 2px solid red;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .exit-button:hover {
+            background-color: red;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .exit-button:active {
+            background-color: darkred;
+            color: white;
+            transform: scale(0.95);
+        }
+
+        div {
+            margin: 0em 1em;
         }
     }
 

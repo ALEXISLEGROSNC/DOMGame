@@ -11,7 +11,7 @@
 
 <body class="gradient-bg font-montserrat NoSpace">
     <section id="TitleContainer" class="">
-        <h1>🍵 RubiksKaré</h1>
+        <h1>🧊 Rubik’s Square</h1>
     </section>
     <section id="GameContainer" class="NoSpace"> <!-- JEU ICI -->
         <div id="grille">
@@ -20,21 +20,13 @@
             
         <div id="infos">
             
-            <button
-            onclick="window.init()"
-            >Reinitialiser</button>
-            <div style="border: 1px solid white; border-radius: 3px; padding : 5px;">
-                <button
-                onclick="window.randomize(document.getElementById('inputNumberOfTImes').value)">
-                Mélanger</button>
-                <input id="inputNumberOfTImes" type="number" style="width:3em" value="3"/> fois
-            </div>
+            <div id="score">Score : 0</div>
+            <div id="timer">Timer : 0</div>
+            <div id="bestScore">Best Score : 0</div>
             
+            <button>Reset</button>
+            <button class="exit-button">Exit</button>
         </div>
-
-
-
-
 
     </section>
     <div></div>
