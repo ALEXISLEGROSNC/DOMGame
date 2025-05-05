@@ -4,18 +4,6 @@
     width: 800px;
 }
 
-#infos {
-    width: 800px;
-    display: flex;
-    justify-content: space-around;
-}
-
-#infos div {
-    /* https://css-tricks.com/almanac/properties/j/justify-content/ */
-    font-size: 40px;
-    color: rgb(133, 47, 47);
-}
-
 #grille {
     width: 800px;
     height: 720px;
@@ -42,22 +30,4 @@
 
 .grilleDragOver {
     background-color: pink;
-}
-
-.cookies {
-    transition: 0.3s all;
-}
-
-.cookies {
-    filter: drop-shadow(2px 2px 2px #222);
-}
-
-.cookies:hover {
-    transform: scale(1.2, 1.2);
-    filter: drop-shadow(4px 4px 4px #222);
-}
-
-.cookies-selected {
-    transform: scale(1.2, 1.2);
-    filter: drop-shadow(4px 4px 4px #222);
 }

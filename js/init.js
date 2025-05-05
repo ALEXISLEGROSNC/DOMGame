@@ -1,4 +1,4 @@
-import { generateGrid, refreshPositions, randomizeGrid, getMoveCount, getElapsedTime } from './grid/grid.js';
+import { generateGrid, refreshPositions, randomizeGrid, getMoveCount, getElapsedTime, getCurrentLevel } from './grid/grid.js';
 
 window.onload = init;
 
@@ -10,17 +10,14 @@ function init() {
     randomizeGrid(grid);
     refreshPositions(grid);
 
-    // Mise à jour du score
+    // Mettre à jour le score toutes les secondes
     setInterval(updateScore, 1000);
 }
 
 function updateScore() {
     const moveCount = getMoveCount();
     const elapsedTime = getElapsedTime();
-    const movesElement = document.getElementById("moves");
-	const timerElement = document.getElementById("timer");
-	const scoreElement = document.getElementById("score");
-    movesElement.textContent = `Mouvements : ${moveCount}`;
-	timerElement.textContent = `Temps écoulé : ${elapsedTime}s`;
-	scoreElement.textContent = `Score : ${Math.max(0, 100 - moveCount - elapsedTime)}`; // à revoir
+    const currentLevel = getCurrentLevel();
+    const scoreElement = document.getElementById("score");
+    scoreElement.textContent = `Niveau : ${currentLevel}, Mouvements : ${moveCount}, Temps : ${elapsedTime}s`;
 }

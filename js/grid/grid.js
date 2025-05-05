@@ -1,5 +1,6 @@
 import { attachOnclickEvents } from './events.js';
 import { moveLeft, moveRight, moveUp, moveDown } from './movement.js';
+import { wait } from '../utils/utils.js';
 
 export function generateGrid(grid) {
 	grid.innerHTML = '';
@@ -42,20 +43,31 @@ let moveCount = 0;
 
 let lastRandomizeTime = Date.now();
 
-export function randomizeGrid(grid) {
-  const elements = Array.from(grid.getElementsByTagName('div'));
-  const moves = [moveLeft, moveRight, moveUp, moveDown];
-  const numMoves = 2;
+let currentLevel = 3;
 
-  for (let i = 0; i < numMoves; i++) {
-    const randomElement = elements[Math.floor(Math.random() * elements.length)];
-    const randomMove = moves[Math.floor(Math.random() * moves.length)];
-    randomMove(randomElement);
-  }
+export async function randomizeGrid(grid) {
+	const elements = Array.from(grid.getElementsByTagName('div'));
+	const moves = [moveLeft, moveRight, moveUp, moveDown];
+	const numMoves = currentLevel + 2;
 
-  refreshPositions(grid);
-  moveCount = 0;
-  lastRandomizeTime = Date.now();
+	for (let i = 0; i < numMoves; i++) {
+		const randomElement = elements[Math.floor(Math.random() * elements.length)];
+		const randomMove = moves[Math.floor(Math.random() * moves.length)];
+		randomMove(randomElement);
+		await wait(100);
+	}
+
+	refreshPositions(grid);
+	moveCount = 0;
+	lastRandomizeTime = Date.now();
+}
+
+export function incrementLevel() {
+	currentLevel++;
+}
+
+export function getCurrentLevel() {
+	return currentLevel;
 }
 
 export function incrementMoveCount() {
