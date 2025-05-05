@@ -16,6 +16,7 @@ export function CellFromDom(domCell) {
 		y: parseInt(domCell.getAttribute('data-y'))
 	};
 }
+
 export function wait(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
-  }
+}

@@ -43,12 +43,12 @@ let moveCount = 0;
 
 let lastRandomizeTime = Date.now();
 
-let currentLevel = 3;
+let currentLevel = 0;
 
 export async function randomizeGrid(grid) {
 	const elements = Array.from(grid.getElementsByTagName('div'));
 	const moves = [moveLeft, moveRight, moveUp, moveDown];
-	const numMoves = currentLevel + 2;
+	const numMoves = currentLevel + 1;
 
 	for (let i = 0; i < numMoves; i++) {
 		const randomElement = elements[Math.floor(Math.random() * elements.length)];
