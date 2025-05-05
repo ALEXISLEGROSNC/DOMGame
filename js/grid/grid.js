@@ -38,16 +38,34 @@ export function refreshPositions(grid) {
 	});
 }
 
+let moveCount = 0;
+
+let lastRandomizeTime = Date.now();
+
 export function randomizeGrid(grid) {
-	const elements = Array.from(grid.getElementsByTagName('div'));
-	const moves = [moveLeft, moveRight, moveUp, moveDown];
-	const numMoves = 2;
+  const elements = Array.from(grid.getElementsByTagName('div'));
+  const moves = [moveLeft, moveRight, moveUp, moveDown];
+  const numMoves = 2;
 
-	for (let i = 0; i < numMoves; i++) {
-		const randomElement = elements[Math.floor(Math.random() * elements.length)];
-		const randomMove = moves[Math.floor(Math.random() * moves.length)];
-		randomMove(randomElement);
-	}
+  for (let i = 0; i < numMoves; i++) {
+    const randomElement = elements[Math.floor(Math.random() * elements.length)];
+    const randomMove = moves[Math.floor(Math.random() * moves.length)];
+    randomMove(randomElement);
+  }
 
-	refreshPositions(grid);
+  refreshPositions(grid);
+  moveCount = 0;
+  lastRandomizeTime = Date.now();
+}
+
+export function incrementMoveCount() {
+	moveCount++;
+}
+
+export function getMoveCount() {
+	return moveCount;
+}
+
+export function getElapsedTime() {
+	return Math.floor((Date.now() - lastRandomizeTime) / 1000);
 }

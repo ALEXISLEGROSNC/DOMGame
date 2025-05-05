@@ -1,8 +1,10 @@
 import { moveUp, moveDown, moveLeft, moveRight } from './movement.js';
-import { checkForWin } from '../utils/winCheck.js'; // Import de checkForWin
+import { checkForWin } from '../utils/winCheck.js';
+import { incrementMoveCount, getMoveCount } from './grid.js'; 
 
 export function attachOnclickEvents(grid) {
 	const elements = grid.getElementsByTagName('div');
+
 	Array.from(elements).forEach(element => {
 		let startX, startY;
 
@@ -28,9 +30,12 @@ export function attachOnclickEvents(grid) {
 			}
 			}
 
-			// Vérification automatique après un mouvement
+			incrementMoveCount(); 
+			console.log("Nombre de mouvements : " + getMoveCount());
+
 			if (checkForWin(grid)) {
 				console.log("Bravo, vous avez gagné !");
+				// TODO : Next level or reset game
 			}
 
 			document.onmousemove = null;

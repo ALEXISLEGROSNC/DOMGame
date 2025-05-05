@@ -1,3 +1,8 @@
+/**
+ * 
+ * @param {*} grid 
+ * @returns 
+ */
 export function checkForWin(grid) {
     const couleurs = getGridColors(grid);
 
@@ -12,7 +17,7 @@ export function checkForWin(grid) {
             }
         }
         if (win) {
-            return true; // Une colonne complète a la même couleur
+            return true;
         }
     }
 
@@ -27,16 +32,20 @@ export function checkForWin(grid) {
             }
         }
         if (win) {
-            return true; // Une ligne complète a la même couleur
+            return true;
         }
     }
 
-    // Si aucune ligne ou colonne ne remplit les conditions, pas de victoire
     return false;
 }
 
+/**
+ * 
+ * @param {*} grid 
+ * @returns 
+ */
 function getGridColors(grid) {
-    const size = Math.sqrt(grid.children.length); // Calculer la taille de la grille
+    const size = Math.sqrt(grid.children.length);
     const cells = Array.from(grid.getElementsByClassName('cell'));
 
     // Construire un tableau 2D des couleurs
